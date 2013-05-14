@@ -1,4 +1,5 @@
 \documentclass[10pt,twocolumn]{article}
+%\documentclass[10pt]{article}
 
 \usepackage{times}
 \usepackage{color}
@@ -7,6 +8,15 @@
 \usepackage{xspace}
 \usepackage{setspace}
 \usepackage{fullpage}
+
+\definecolor{CBlue}{rgb}{0.33,0.63,0.83}
+%\newcommand{\david}[1]{}
+%\newcommand{\shaddi}[1]{}
+%\newcommand{\omer}[1]{}
+
+\newcommand{\david}[1]{[\textcolor{red}{\textit{David: #1}}]}
+\newcommand{\shaddi}[1]{[\textcolor{CBlue}{\textit{Shaddi: #1}}]}
+\newcommand{\omer}[1]{[\textcolor{green}{\textit{Omer: #1}}]}
 
 \title{SVM Classification}
 
@@ -19,7 +29,7 @@
 \input{introduction}
 \input{related}
 \input{dataset}
-\input{analysis}
+\input{classify}
 \input{evaluation}
 \input{future}
 \input{conclusion}
