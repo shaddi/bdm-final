@@ -6,17 +6,22 @@ Thus, our first step is to collect data for analysis.
 We featurize matrix multiplications based on the dimensions of the input matrices: M, K, and N.
 These features represent the size of each dimension of a matrix multiplication of the form $M\times{K} * K\times{N}$.
 We generated random dense matrices with real-valued floating point numbers ranging in size from $64\times{64}$ to $3250\times{3250}$.
-We varied each dimension in evenly-spaced increments across that range.\shaddi{David, you should add more detail about this}.
+We varied each dimension in 10 evenly-spaced increments across that range.
 Note that this means we generated a range of rectangular matrices, not just square ones.
 
 This step results in 1000 possible matrix multiplications (i.e., combinations of M, K, and N).
 We then run each of these matrix multiplications using both of our algorithms under test (MKL and CARMA) and record the performance of each multiplication in gigaflops/second.
-We repeat each multiplication three times and compare the mean performance for each algorithm.
-This constitutes a single datapoint for our classifier: a tuple (M,K,N) and a binary label of which algorithm performed better.
+We repeat each multiplication three times and compare the max performance for each algorithm.
+This constitutes a single datapoint for our classifier: a tuple (M,K,N) and a binary label representing which algorithm ran faster.
 Finally, we performed this process on three separate machines with different architectures, for a total of 18,000 matrix multiplications and 3,000 data points.
 The machines we used are shown in Table~\ref{t:machines}.
 
-\shaddi{Maybe say something about the tools we used to generate and run the experiments?}
+To multiply the matrices, we wrote a custom matrix multiplication program in C.
+Our program allocates three matrices (A, B, and C) and initializes them with random floats between -1 and 1.
+We then perform a single matrix multiplication to warm-up the processor, clear the cache, and multiply the random matrices we generated.
+To ensure that the matrix multiplication operation takes sufficient time to be accurately measured, we perform as many multiplications as necessary so that the total time of all multiplications is 0.2 seconds.
+We then divide the total time by the number of multiplications to calculate the time for a single matrix multiplication.
+To compute Gflops, we divide $2^{-9} * m * k * n$ by the time for a single multiplication.
 
 \begin{table}[t]
     \begin{center}
@@ -34,7 +39,8 @@ The machines we used are shown in Table~\ref{t:machines}.
 \subsection{Limitations}
 Our data has a few limitations.
 First and foremost, our largest matrix is $3250\times{3250}$.
-While this is a large matrix, it still fit in memory on all our machines; we did not explore extremely large matrix sizes, though we believe our technique is general enough to scale to those as well.
+While this is a large matrix, it still fits in memory on all our machines; we did not explore extremely large matrix sizes, though we believe our technique is general enough to scale to those as well.
 Secondly, some of the machines we used to generate data were shared machines.
-As a result, our performance would sometimes fluctuate significantly between runs; we considered average performance to account for this, but due to time constraints we were only able to consider an average of three runs.
-Nevertheless, our classification results were strong, so we do not believe that the noise introduced by this significantly impacted our evaluation.
+As a result, our performance would sometimes fluctuate significantly between trials.
+To accurately evaluate how fast the multiplication would run in an ideal environment, we took the max Gflops measurement over three trials (due to time constraints, we were unable to perform more than three measurements per datapoint per machine).
+Nevertheless, our classification results were strong, so we do not believe that the remaining variability after maxing over three trials significantly impacted our evaluation or the significance of our results.
