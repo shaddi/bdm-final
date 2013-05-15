@@ -1,8 +1,9 @@
 \section{Classification}
-\label{s:class}
+\label{s:classification}
+
 Intuitively, we expected the regions in which each algorithm performed better to be highly nonlinear.
 As a result, we chose to use a support vector machine for classification, as these are known to have good performance for nonlinear classification.
-Specifically, we used MATLAB's~\shaddi{cite} implementation of SVM.
+Specifically, we used MATLAB's~\cite{MATLAB2011} implementation of SVM.
 We chose to compare two kernels, the Gaussian radial basis function (RBF) and the multilayer perceptron (MLP).
 
 As described in section~\ref{s:data:gen}, we featurized DMM by using the sizes of the input matrices: M, K, and N.
@@ -83,7 +84,7 @@ See Figure~\ref{fig:classifying} for the results of this procedure.
             \caption{Sandy - MLP}
             \label{f:classify_mlp_sandy}
         \end{subfigure}
-        
+
         \caption{Testing results for each of our three machines, for each kernel (RBF and MLP). Blue dots represent datapoints where our classifier correctly predicted which algorithm was faster, and orange dots represent incorrect classifications. Note that the RBF kernel outperforms the MLP kernel on all machines (most significantly on Emerald and Sandy)}
     \label{fig:classifying}
 \end{figure*}

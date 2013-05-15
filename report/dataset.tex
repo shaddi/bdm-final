@@ -1,8 +1,11 @@
 \section{Data}
+\label{s:data}
+
 Our project takes an empirical approach to the algorithm selection problem.
 Thus, our first step is to collect data for analysis.
 
 \subsection{Generating Data}
+\label{s:data:gen}
 We featurize matrix multiplications based on the dimensions of the input matrices: M, K, and N.
 These features represent the size of each dimension of a matrix multiplication of the form $M\times{K} * K\times{N}$.
 We generated random dense matrices with real-valued floating point numbers ranging in size from $64\times{64}$ to $3250\times{3250}$.
@@ -10,7 +13,7 @@ We varied each dimension in 10 evenly-spaced increments across that range.
 Note that this means we generated a range of rectangular matrices, not just square ones.
 
 This step results in 1000 possible matrix multiplications (i.e., combinations of M, K, and N).
-We then run each of these matrix multiplications using both of our algorithms under test (MKL and CARMA) and record the performance of each multiplication in gigaflops/second.
+We then run each of these matrix multiplications using both of our algorithms under test (MKL and CARMA) and record the performance of each multiplication in gigaflops/second (Gflops).
 We repeat each multiplication three times and compare the max performance for each algorithm.
 This constitutes a single datapoint for our classifier: a tuple (M,K,N) and a binary label representing which algorithm ran faster.
 Finally, we performed this process on three separate machines with different architectures, for a total of 18,000 matrix multiplications and 3,000 training points.
