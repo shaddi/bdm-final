@@ -1,3 +1,13 @@
 \section{Related Work}
 \label{s:related}
-Cite some stuff.
+The idea of using machine learning techniques to improve performance on complex architectures is not new.
+Increasingly complicated machine architectures and compilers motivate a shift from analytical to empirical approaches.
+However, most literature on this topic focuses on auto-tuning for templated-code optimization problems using regression models~\cite{bergstra2012machine}.
+Our approach is not limited to auto-tuning within an algorithm template, as we are more interested in performance variations between linear algebra algorithms and their communication-avoiding counterparts.
+
+Another relevant topic of research is the improvement of exhaustive search techniques.
+Hueristics may be used for terminating exhaustive search early if near-optimal implementations are found.
+In addition, run-time decision rules can be used to select fast implementations based on run-time input~\cite{vuduc2001statistical}~\cite{vuduc2004statistical}.
+Our work sacrifices optimality for every set of input parameters, but as a result the cost of training is low.
+
+
