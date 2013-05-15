@@ -30,7 +30,7 @@ Second, a plethora of algorithms for DMM exist in the literature.
 Two of the authors have developed a communication-avoiding algorithm for DMM called CARMA~\cite{demmel2013communication}; CARMA's approach is substantially different than the industry-standard algorithm MKL~\cite{intel2007intel}, making it likely that it would have different performance properties across different machines.
 Finally, DMM is easily parameterizable---in general, performance is dictated by the dimensions of the input matrices.
 
-We perform classification using a support vector machine.
+We perform classification using a support vector machine~\cite{cortes1995support}.
 We evaluate our classifier on a set of multiplications of matrices ranging in size from 64 x 64 to 3250 x 3250---a state space of over 32 billion possible inputs.
 We find that our classifier achieves good results across multiple machines, with F1 scores ranging from 0.75 to 0.88, and that training on only a few hundred points is usually sufficient to achieve this level of accuracy.
 Finally, using our approach we observe performance increases of up to 28\% versus choosing an algorithm a priori.

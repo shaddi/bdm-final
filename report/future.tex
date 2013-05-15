@@ -1,18 +1,17 @@
 \section{Future Work}
 \label{s:future}
 
-The input used to train the SVM was binary.
-If CARMA's performance was superior to MKL's performance for a given set of matrix dimensions, the sample was associated with the CARMA class and vice versa.
-We aim to explore techniques that account for the percentage difference between the two algorithms' performance.
-In other words, matrix multiplications for which one algorithm was significantly faster should be weighted more heavily in model updates.
+The input used to train the SVM was binary: If CARMA's performance was superior to MKL's performance for a given set of matrix dimensions, the datapoint was given with the CARMA label (and vice versa for MKL).
+We aim to explore techniques that account for the magnitude of the difference between the two algorithms' performances.
+In other words, datapoints for which one algorithm was significantly faster should be weighted more heavily in our performance model.
 Performance gains achieved by correctly selecting the faster algorithm are a more important metric for this work than a high overall classification accuracy.
 
-In this project we examine dense matrix multiplication on three different shared-memory machines.
-However, the approach of using SVM to partition a feature space based on algorithm performance patterns can be generalized to a wide variety of algorithms and architectures.
-We aim to evaluate additional linear algebra algorithms such as QR decomposition, sparse matrix multiplication, and Cholesky decomposition.
+In this project, we examined dense matrix multiplication on three different shared-memory machines.
+However, the approach of using SVM to partition a feature space based on algorithm performance patterns can be generalized to a wide variety of other algorithms and architectures.
+We aim to evaluate additional linear algebra algorithms such as QR decomposition and sparse matrix multiplication.
 Furthermore, we are interested in gathering data on distributed-memory machines in which higher communication costs magnify the performance gains that can be achieved by communication-avoiding algorithms such as CARMA.
 
 Finally, algorithm selection could be incorporated into machine learning as well as scientific computing frameworks.
-After gathering sufficient training data, the framework could select the optimal algorithm for a given set of input parameters.
+After gathering sufficient training data, the framework could select the optimal algorithm for a given set of input parameters at runtime.
 The number of samples required for convergence in the dense matrix multiplication case that we explored is orders of magnitude smaller than the size of the feature space (Figure~/ref{fig:convergence}).
 The framework would only classify input parameters above a certain threshold because the overhead of classification cannot be justified for all cases.

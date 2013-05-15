@@ -3,8 +3,7 @@
 
 
 We evaluate the performance of our classifier using F1 scores (see Table~\ref{t:F1_scores}).
-In summary, our classifier performs best on Hopper, which yields an F1 score of 0.88 (with the RBF kernel).
-Our classifier performs worst on Sandy, on which it achieves an F1 score of 0.75 (also using the RBF kernel).
+Our classifier performs best on Hopper, which yields an F1 score of 0.88 (with the RBF kernel).
 On all three machines, the RBF kernel outperforms the MLP kernel.
 
 \begin{table}[t]
@@ -22,7 +21,7 @@ On all three machines, the RBF kernel outperforms the MLP kernel.
 
 In order to measure how many datapoints are required to train an accurate classifier, we explored the effects of reducing the size of our training set.
 In this experiment, we randomly selected X\% of our original 1000 training points, for X ranging from 1\% to 100\%.
-After training our classifier with this random X\% of training data, we measured the resulting F1 score on the test data. See Figure~\ref{fig:convergence}.
+After training our classifier with this random X\% subset of our training data, we measured the resulting F1 score on the test data. See Figure~\ref{fig:convergence}.
 
 \begin{figure*}[t]
     \centering
@@ -66,6 +65,6 @@ For complete results, see Table~\ref{t:improvements}.
             Sandy & 4.4\% & 0.9\% \\
         \end{tabular}
     \end{center}
-    \caption{F1 scores for each machine and kernel. Note that on all machines, the RBF kernel outperformed the MLP kernel.}
+    \caption{Runtime performance gains of our algorithm selector vs running a single algorithm.}
     \label{t:improvements}
 \end{table}
