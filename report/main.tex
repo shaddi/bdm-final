@@ -28,6 +28,13 @@
 
 \maketitle
 
+\begin{abstract}
+    We present a machine-learning based technique for the problem of \emph{algorithm selection}, specifically focusing on algorithms for dense matrix multiplication (DMM).
+    Dense matrix multiplication is a core part of many high-performance computing and machine learning algorithms, but the performance of DMM algorithms can vary significantly based on their input and the performance characteristics of each particular machine.
+    We model machine performance using support vector machines and show that only a small sample of possible inputs is sufficient to determine the best choice of algorithm over a wide range of possible inputs and even over different machines (by training a model per machine).
+    We find that by using this classifier-based approach and choosing the best algorithm to use at runtime, we are able to achieve at least a 0.5\% and as much as a 28\% increase in performance over choosing a single algorithm a priori.
+\end{abstract}
+
 \input{introduction}
 \input{related}
 \input{dataset}

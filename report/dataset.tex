@@ -24,7 +24,7 @@ Our program allocates three matrices (A, B, and C) and initializes them with ran
 We then perform a single matrix multiplication to warm-up the processor, clear the cache, and multiply the random matrices we generated.
 To ensure that the matrix multiplication operation takes sufficient time to be accurately measured, we perform as many multiplications as necessary so that the total time of all multiplications is at least 0.2 seconds.
 We then divide the total time by the number of multiplications to calculate the time for a single matrix multiplication.
-To compute Gflops, we divide $2^{-9} * m * k * n$ by the time for a single multiplication.
+To compute Gflops, we divide $2^{-9} * m * k * n$\footnote{Each entry of the resulting $M\times{N}$ matrix requires K multiply and K add operations, hence this total for GFlops.} by the time for a single multiplication.
 
 \begin{table}[t]
     \begin{center}
