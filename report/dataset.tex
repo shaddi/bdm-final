@@ -13,13 +13,13 @@ This step results in 1000 possible matrix multiplications (i.e., combinations of
 We then run each of these matrix multiplications using both of our algorithms under test (MKL and CARMA) and record the performance of each multiplication in gigaflops/second.
 We repeat each multiplication three times and compare the max performance for each algorithm.
 This constitutes a single datapoint for our classifier: a tuple (M,K,N) and a binary label representing which algorithm ran faster.
-Finally, we performed this process on three separate machines with different architectures, for a total of 18,000 matrix multiplications and 3,000 data points.
+Finally, we performed this process on three separate machines with different architectures, for a total of 18,000 matrix multiplications and 3,000 training points.
 The machines we used are shown in Table~\ref{t:machines}.
 
 To multiply the matrices, we wrote a custom matrix multiplication program in C.
 Our program allocates three matrices (A, B, and C) and initializes them with random floats between -1 and 1.
 We then perform a single matrix multiplication to warm-up the processor, clear the cache, and multiply the random matrices we generated.
-To ensure that the matrix multiplication operation takes sufficient time to be accurately measured, we perform as many multiplications as necessary so that the total time of all multiplications is 0.2 seconds.
+To ensure that the matrix multiplication operation takes sufficient time to be accurately measured, we perform as many multiplications as necessary so that the total time of all multiplications is at least 0.2 seconds.
 We then divide the total time by the number of multiplications to calculate the time for a single matrix multiplication.
 To compute Gflops, we divide $2^{-9} * m * k * n$ by the time for a single multiplication.
 
