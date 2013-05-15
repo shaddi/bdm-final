@@ -14,7 +14,7 @@ We trained our classifier on each of our three testing machines.
 Our results, shown in Figure~\ref{fig:training}, were surprising.
 While we expected some machine-to-machine variation, the regions where each algorithm performs better are substantially different across machines.
 Indeed, Emerald and Sandy have diametrically opposed training results.
-\shaddi{Wasn't there a reason for this that you all mentioned? Would be cool to add it.}
+We do not have a theoretical model to explain this variation which further illustrates the value of the empirical machine learning approach to this problem.
 This is a key result: approaches that do not consider per-machine variation are certain to use the wrong algorithm in many cases.
 We also note that the regions of optimal performance for each algorithm are in fact nonlinear.
 
@@ -40,13 +40,12 @@ We also note that the regions of optimal performance for each algorithm are in f
 \end{figure*}
 
 Another surprising result of our training was the fact that CARMA performed well for such large regions.
-The developers of that algorithm had designed it for multiplication of ``long, skinny'' matrices, and it outperformed MKL for those on all three of our machines.
-However, its strong performance for other types of matrices was unexpected.
-This is likely to do with... \shaddi{something?}.
+CARMA's developers had designed it for multiplication of ``long, skinny'' matrices, and it outperformed MKL for those on all three of our machines.
+However, its strong performance for other types of matrices was unexpected, and will be analyzed in the future.
 
 \subsection{Classifying}
 In order to evaluate our classifier, we needed to generate random datapoints for testing.
-We randomly generated values for M, K, and N within our training space, and and duplicated our data-collecting procedure to time the multiplications and record which algorithm ran faster.
+We randomly generated values for M, K, and N within our training space, and duplicated our data-collecting procedure to time the multiplications and record which algorithm ran faster.
 After gathering this test data, we removed the true class labels and ran the values for M, K, and N through our classifier (once per machine for each kernel).
 Given the true and predicted label for each testing datapoint, we now had enough information to evaluate our classifier.
 See Figure~\ref{fig:classifying} for the results of this procedure.
