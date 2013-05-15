@@ -1,8 +1,11 @@
 \section{Evaluation}
 \label{s:evaluation}
+We used our training data to develop a performance model for each machine.
+Note that the performance model is the trained SVM itself, and only considers the end-to-end performance of the training data.
 
-
-We evaluate the performance of our classifier using F1 scores (see Table~\ref{t:F1_scores}).
+\subsection{Classifier Performance}
+We evaluated the performance of our classifier on each machine according to the 
+using F1 scores (see Table~\ref{t:F1_scores}).
 Our classifier performs best on Hopper, which yields an F1 score of 0.88 (with the RBF kernel).
 On all three machines, the RBF kernel outperforms the MLP kernel.
 
@@ -23,32 +26,14 @@ In order to measure how many datapoints are required to train an accurate classi
 In this experiment, we randomly selected X\% of our original 1000 training points, for X ranging from 1\% to 100\%.
 After training our classifier with this random X\% subset of our training data, we measured the resulting F1 score on the test data. See Figure~\ref{fig:convergence}.
 
-\begin{figure*}[t]
-    \centering
-        \begin{subfigure}[t]{0.33\textwidth}
-            \includegraphics[width=\textwidth]{figures/F1_convergence_emerald.png}
-            \caption{Emerald}
-            \label{f:F1_emerald}
-            \end{subfigure}
-        \begin{subfigure}[t]{0.33\textwidth}
-            \includegraphics[width=\textwidth]{figures/F1_convergence_hopper.png}
-            \caption{Hopper}
-            \label{f:F1_hopper}
-        \end{subfigure}
-        \begin{subfigure}[t]{0.33\textwidth}
-            \includegraphics[width=\textwidth]{figures/F1_convergence_sandy.png}
-            \caption{Sandy}
-            \label{f:F1_sandy}
-        \end{subfigure}
-        \caption{F1 convergence on each machine (using the RBF kernel). Sandy and Hopper require fewer than 500 datapoints to generate accurate performance models, while Emerald requires more than 1000 (due to Emerald's more complicated performance patterns).}
-    \label{fig:convergence}
-\end{figure*}
 
 Of course, the number of training points required to build an accurate model will vary widely by machine and algorithm.
 As shown in Figure~\ref{fig:convergence}, although Sandy and Hopper require fewer than 500 datapoints to achieve a maximal F1 score, Emerald requires more than 1000.
 This is due to the fact that performance patterns on Emerald are more complex.
 We don't have a theoretical model to understand this complexity, further validating the value our empirical approach.
 
+
+\subsection{Application Performance}
 We also performed tests to quantify the benefit of using our algorithm selection technique.
 How much do we gain by using our classifier to select the optimal algorithm?
 It depends on the machine, as well as what algorithm would have been chosen otherwise.
@@ -59,7 +44,7 @@ For complete results, see Table~\ref{t:improvements}.
 \begin{table}[t]
     \begin{center}
         \begin{tabular}{c|c|c}
-            Machine & Selection vs CARMA Only & Selection vs MKL Only \\ \hline
+            Machine & \pbox{20cm}{Selection vs\\CARMA Only} & \pbox{20cm}{Selection vs\\MKL Only} \\ \hline
             Emerald & 11.3\% & 5.7\% \\
             Hopper & 2.2\% & 28.0\% \\
             Sandy & 4.4\% & 0.9\% \\

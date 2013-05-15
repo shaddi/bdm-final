@@ -1,2 +1,10 @@
 \section{Conclusion}
 \label{s:conclusion}
+In this project, we've tackled the problem of algorithm selection for HPC and machine learning problems, specifically focusing on dense matrix multiplication.
+This problem is challenging due to the complexity of analyzing machine performance a priori and due to per-machine variation in algorithm performance, the latter of which was dramatically reflected in our training results.
+We found that using a support vector machine to classify the space of inputs between multiple choices of algorithms can yield good results, with F1 scores as high as 0.88 on one of our testing machines.
+Moreover, achieving that level of accuracy requires a small training set---only a few hundred data points.
+
+We believe this technique has promise for improving the performance of real applications.
+The status quo requires developers to think carefully about the machines and data their applications will use, analyze the expected performance, and then choose their algorithm appropriately, hoping they've made the right choice for all time.
+This need not be the case: we've demonstrated that our approach is feasible and in general improves performance over the status quo, with up to 28\% increase in performance in the best case.
