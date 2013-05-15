@@ -1,5 +1,4 @@
 \section{Evaluation}
-\label{s:class}
 
 We evaluate the performance of our classifier using F1 scores (see Table~\ref{t:F1_scores}).
 In summary, our classifier performs best on Hopper, which yields an F1 score of 0.88 (with the RBF kernel).
@@ -49,3 +48,22 @@ As shown in Figure~\ref{fig:convergence}, although Sandy and Hopper require fewe
 This is due to the fact that performance patterns on Emerald are more complex.
 We don't have a theoretical model to understand this complexity, further validating the value our empirical approach.
 
+We also performed tests to quantify the benefit of using our algorithm selection technique.
+How much do we gain by using our classifier to select the optimal algorithm?
+It depends on the machine, as well as what algorithm would have been chosen otherwise.
+For example, using our classifier on Emerald yields an 11.3\% average speedup over using only CARMA, and a 5.7\% speedup over using just MKL (this includes the penalties of misclassifications).
+On Hopper, our classifier enjoys a healthy 28.0\% gain over using MKL only.
+For complete results, see Table~\ref{t:improvements}.
+
+\begin{table}[t]
+    \begin{center}
+        \begin{tabular}{c|c|c}
+            Machine & Selection vs CARMA Only & Selection vs MKL Only \\ \hline
+            Emerald & 11.3\% & 5.7\% \\
+            Hopper & 2.2\% & 28.0\% \\
+            Sandy & 4.4\% & 0.9\% \\
+        \end{tabular}
+    \end{center}
+    \caption{F1 scores for each machine and kernel. Note that on all machines, the RBF kernel outperformed the MLP kernel.}
+    \label{t:improvements}
+\end{table}
